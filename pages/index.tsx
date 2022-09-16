@@ -52,9 +52,7 @@ const Home: NextPage = () => {
     };
 
     const [addPageMode, setAddPageMode] = useState<boolean>(false);
-
-    console.log(todos)
-
+    
     return (
         <NonSSRWrapper>
             <div className={styles.container}>
