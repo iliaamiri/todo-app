@@ -1,7 +1,6 @@
-import type {NextPage} from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type {NextPage} from 'next';
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
 import useLocalStorage from "../hooks/useLocalStorage";
 import {TodoItem as TodoItemModel} from "../models/TodoItem";
 import TodoItem from "../components/TodoItem";
@@ -52,7 +51,7 @@ const Home: NextPage = () => {
     };
 
     const [addPageMode, setAddPageMode] = useState<boolean>(false);
-    
+
     return (
         <NonSSRWrapper>
             <div className={styles.container}>
