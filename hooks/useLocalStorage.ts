@@ -16,6 +16,7 @@ function useLocalStorage(key: string, initialValue: TodoItem[]): ReturnParams {
         try {
             // Get from local storage by key
             const item = window.localStorage.getItem(key);
+            console.log("asdfasdff", item);
             // Parse stored json or if none return initialValue
             return item ? JSON.parse(item) as TodoItem[] : initialValue;
         } catch (error) {
@@ -30,11 +31,16 @@ function useLocalStorage(key: string, initialValue: TodoItem[]): ReturnParams {
     const setValue = (value: (prevTodoItems: TodoItem[]) => TodoItem[]) => {
         try {
             // Save state
-            setStoredValue(value);
-            // Save to local storage
-            if (typeof window !== "undefined") {
-                window.localStorage.setItem(key, JSON.stringify(value));
-            }
+            setStoredValue((prevState) => {
+                let newValue = value(prevState);
+
+                // Save to local storage
+                if (typeof window !== "undefined") {
+                    window.localStorage.setItem(key, JSON.stringify(newValue));
+                }
+
+                return newValue;
+            });
         } catch (error) {
             // A more advanced implementation would handle the error case
             console.log(error);
